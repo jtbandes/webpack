@@ -1,3 +1,5 @@
+import maybeB from "./b";
+
 it("should evaluate optional members", () => {
 	if (!module.hot) {
 		expect(
@@ -12,4 +14,9 @@ it("should evaluate optional chaining as a part of statement", () => {
 	} else {
 		expect(module.hot).toBe(undefined);
 	}
+});
+
+it("should not incorrectly remove optional chain - issue-12960", () => {
+	expect(maybeB).toBe(undefined);
+	expect(maybeB?.toString()).toBe(undefined);
 });

@@ -30,6 +30,7 @@ const categories = fs.readdirSync(casesPath).map(cat => {
 });
 
 const describeCases = config => {
+	// if (config.name !== "parsing") return;
 	describe(config.name, () => {
 		let stderr;
 		beforeEach(() => {
@@ -46,6 +47,7 @@ const describeCases = config => {
 				for (const testName of category.tests) {
 					// eslint-disable-next-line no-loop-func
 					describe(testName, function () {
+						if (!testName.includes("optional-chaining")) return;
 						const testDirectory = path.join(casesPath, category.name, testName);
 						const filterPath = path.join(testDirectory, "test.filter.js");
 						if (fs.existsSync(filterPath) && !require(filterPath)()) {

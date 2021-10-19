@@ -1,6 +1,7 @@
 import value from "./a";
 
 it("should run module.hot.accept(…)", function (done) {
+	debugger;
 	expect(value).toBe(1);
 	module?.hot?.accept("./a", function () {});
 	NEXT(
